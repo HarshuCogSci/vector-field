@@ -1,0 +1,6 @@
+VECTOR FIELD
+
+Changes needed:
+  - Reverse the direction of negative y-axis
+  - The magnitude calculation breaks for constant fields
+  - Change color scale to be from blue-to-yellow as compare to blue-to-green (Chaitanya's recommendation)

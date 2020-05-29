@@ -1,0 +1,38 @@
+.box{
+    background-color: #E6E6E6;
+    border: 1px solid #959595;
+    margin: 0px;
+    padding: 2px 8px;
+    z-index: 102;
+    color: black;
+    font-size: 80%;
+    width: auto;
+    white-space: nowrap;
+}
+
+body{
+  margin: 0px;
+  background: #f5f5f5 url('../assets/bkg.png') repeat;
+  -webkit-user-select: none;  /* Chrome all / Safari all */
+  -moz-user-select: none;     /* Firefox all */
+  -ms-user-select: none;      /* IE 10+ */
+  user-select: none;          /* Likely future */
+}
+
+.panel{
+  font-family: 'sans-serif';
+  font-size: 1.3em;
+  position: absolute;
+  z-index: 10;
+  width: 260px;
+  height: 280px;
+  background: #fff;
+  top: 40%;
+  left: 50%;
+  margin: -110px 0 0 -100px;
+  padding: 20px;
+  border-radius: 4px;
+  box-sizing: border-box;
+  z-index: 100;
+  box-shadow: 0px 0 11px 1px #000;
+}

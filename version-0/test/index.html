@@ -1,0 +1,97 @@
+<html lang="en">
+<head>
+  <title>Vector field</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0"/>
+
+  <meta name="description" content="Animatied vector fields">
+  <meta name="keywords" content="vector fields, visualization, animation">
+  <meta name="author" content="Learning Sciences Research Lab, Homi Bhabha Centre for Science Education, http://lsr.hbce.tifr.res.in, http://hbcse.tifr.res.in">
+</head>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+<script src="https://d3js.org/d3-hsv.v0.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/3.16.3/math.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js"></script>
+<script type="text/x-mathjax-config"> MathJax.Hub.Config({ extensions: ["tex2jax.js"], jax: ["input/TeX","output/HTML-CSS"], tex2jax: { inlineMath: [["\\(","\\)"]] } }); </script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.1/dat.gui.min.js"></script>
+<script src="https://unpkg.com/sweetalert2@7.13.3/dist/sweetalert2.all.js"></script>
+
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!-- ************************************************************* -->
+
+<body>
+  <div class = 'container-fluid text-center px-0'>
+    <div class = 'pt-2 pb-1 bg-white'> <h5>Vector Field</h5> </div>
+    <div id = 'controls-panel'></div>
+    <div id = 'canvas-panel'></div>
+    <div id = 'footer-panel'></div>
+  </div>
+</body>
+
+<!-- ************************************************************* -->
+
+<script src = 'computation.js'></script>
+<script src = 'visual.js'></script>
+<script src = 'controls.js'></script>
+<script src = 'parsing.js'></script>
+
+<script>
+
+// ************************************************************************************** //
+// Call in the html files
+
+$(document).ready(function(){
+  $('#controls-panel').load('controls.html', function(){
+    $('#canvas-panel').load('canvas.html', function(){
+      $('#footer-panel').load('footer.html', function(){
+        setup();
+      })
+    })
+  })
+})
+
+function setup(){
+  createVariables();
+  createCoordinates();
+  createPresets();
+  createControls();
+  reset();
+}
+
+function reset(){
+  animation = true;
+  d3.select('#progress-message').styles({ 'visibility': 'unset' });
+  setTimeout(function(){
+    parseFunction(); // createVelocityArray();
+    resetCanvas();
+    d3.select('#progress-message').styles({ 'visibility': 'hidden' });
+  }, 25);
+}
+
+// ************************************************************************************** //
+// Creating all the variables
+
+function createVariables(){
+  backgroundEncoding = 'none';
+  animation = true;
+
+  createVariables_visual();
+  createVariables_computation();
+  createVariables_parsing();
+}
+
+</script>
+
+</html>
